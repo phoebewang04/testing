@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoption Carousel</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* 基本樣式 */
+        #infrom {
+            width: 300px; /* 根據需要調整寬度 */
+            margin: 0 auto;
+            position: relative;
+        }
+        .slide {
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .slide img {
+            width: 100%;
+        }
+        .smallpic {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+        .smallpic img {
+            width: 60px; /* 根據需要調整小圖的寬度 */
+            cursor: pointer;
+        }
+        .arrow1, .arrow2 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 2em;
+            color: #000;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .arrow1 {
+            right: 10px;
+        }
+        .arrow2 {
+            left: 10px;
+        }
+        /* 鼠標懸停效果 */
+        .arrow1:hover, .arrow2:hover {
+            color: #007bff;
+            transform: translateY(-50%) scale(1.2);
+        }
+        /* 點擊效果 */
+        .arrow1:active, .arrow2:active {
+            color: #0056b3;
+            transform: translateY(-50%) scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="infrom"> <!--領養相關資訊及照片-->
+
+        <div class="swiper-container mySwiper">
+
+            <div class="swiper-wrapper slide">
+                <div class="swiper-slide">
+                    <img src="./img/ad13.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./img/ad14.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./img/ad15.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./img/ad16.jpg" alt="">
+                </div>
+            </div>
+            
+            <!-- 添加Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- 添加導航箭頭 -->
+            <div class="swiper-button-next arrow1"><i class="fa-solid fa-circle-chevron-right"></i></div>
+            <div class="swiper-button-prev arrow2"><i class="fa-solid fa-circle-chevron-left"></i></div>
+        </div>
+
+        <div class="smallpic">
+            <img src="./img/ad14.jpg" alt="">
+            <img src="./img/ad15.jpg" alt="">
+            <img src="./img/ad16.jpg" alt="">
+        </div>
+
+    </div>
+
+    <script>
+        let swiper = new Swiper(".mySwiper", {
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        // 小圖片點擊事件
+        $('.smallpic img').on('click', function() {
+            const index = $(this).index() + 1; // 小圖片索引
+            swiper.slideTo(index, 1000, false); // 切換到對應的圖片
+        });
+    </script>
+</body>
+</html>
